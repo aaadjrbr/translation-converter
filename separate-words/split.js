@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const words = text.split(/\s+/); // Split the text by spaces
 
         // List of words to exclude
-        const excludedWords = ["the", "and", "is", "in", "to", "a", "of", "it", "I", "you", "he", "she", "we", "they", "my", "your", "his", "her", "our", "their", "yes", "you're", "we're", "they're", "are"];
+        const excludedWords = ["the", "and", "is", "in", "to", "a", "of", "it", "I", "you", "he", "she", "we", "they", "my", "your", "his", "her", "our", "their", "yes", "you're", "we're", "they're", "are", "me", "on", "at", "be", "no", "okay", "ok", "yeah", "am", "do", "does", "didn't", "did", "I'm"];
 
         // Create an object with words as keys and empty strings as values, excluding the excluded words
         const separatedWords = {};
