@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Converter</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="./logo.png">
+</head>
+<body>
+    <h1>Translation Converter</h1>
+    <a href="./description.html"><p>What is this for?</p></a>
+    <div class="input-container">
+        <label for="englishInput">English Text:</label>
+        <textarea id="englishInput" placeholder="Enter English text line by line"></textarea>
+    </div>
+    <div class="input-container">
+        <label for="portugueseInput">Portuguese Translation:</label>
+        <textarea id="portugueseInput" placeholder="Enter Portuguese translation line by line"></textarea>
+    </div>
+    <button id="convertButton">Convert</button>
+    <div class="output-container">
+        <label for="outputTextarea">Generated HTML:</label>
+        <textarea id="outputTextarea" rows="10" placeholder="Generated HTML will be displayed here" readonly></textarea>
+    </div>
+
+
+    <footer>Powered by English w/ Adenilson</footer>
+    <script src="./script.js"></script>
+</body>
+</html>
