@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phrase Translator (2)</title>
+    <link rel="icon" type="image/x-icon" href="../logo.png">
+    <link rel="stylesheet" href="./vocab-builder2.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Translation Input</h1>
+        <a href="../vocabulary-builder-stuff/vocab-builder.html"><p>Phrase Translator</p></a>
+
+
+        <form>
+            <label for="english-input">English:</label>
+            <textarea id="english-input" rows="4" cols="50" placeholder="Enter English Phrases" required></textarea>
+            
+            <label for="portuguese-input">Portuguese:</label>
+            <textarea id="portuguese-input" rows="4" cols="50" placeholder="Enter Portuguese Phrases" required></textarea>
+            
+            <button type="button" onclick="translateText()">Translate</button>
+        </form>
+        
+        <div id="phrase-container">
+            <!-- Translated phrases will be displayed here -->
+        </div>
+    </div>
+
+    <script src="./vocab-builder2.js"></script>
+</body>
+</html>
