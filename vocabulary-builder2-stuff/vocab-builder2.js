@@ -11,7 +11,7 @@ function translateText() {
         const englishLine = englishLines[i].trim();
         const portugueseLine = portugueseLines[i].trim();
         if (englishLine !== '' && portugueseLine !== '') {
-            const phrase = `<div>&lt;li&gt;&lt;strong&gt;${i + 1}. ${englishLine}&lt;/strong&gt; - &lt;span class=\\"translation\\"&gt;${portugueseLine}&lt;/span&gt;&lt;/li&gt;</div>`;
+            const phrase = `<div>&lt;li&gt;&lt;strong&gt;${i + 1}. ${englishLine}&lt;/strong&gt; - &lt;span class="translation"&gt;${portugueseLine}&lt;/span&gt;&lt;/li&gt;</div>`;
             translatedPhrases.push(phrase);
         }
     }
