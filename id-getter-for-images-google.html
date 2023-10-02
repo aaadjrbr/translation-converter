@@ -49,15 +49,17 @@
     </style>
 </head>
 <body>
-    <h1>Google Drive ID Extractor (VIDEOS)</h1>
+
+    <h1>Google Drive ID Extractor (IMAGES)</h1>
     <a href="./index.html"><p>Home</p></a>
 
 
     <p>Paste your Google Drive link below:</p>
-    <input type="text" id="driveLink" placeholder="Enter Google Drive Link" onkeydown="checkEnterKey(event)">
-    <button onclick="extractId()">Extract ID</button>
-    <p>Click the link below to copy it:</p>
-    <a id="downloadLink" href="#" onclick="copyToClipboard()"></a>
+
+
+    <input type="text" id="driveLink" placeholder="Paste Google Drive Image Link" onkeyup="checkEnterKey(event)">
+    <button onclick="extractId()">Convert</button>
+    <p id="formattedLink" onclick="copyToClipboard()"></p>
 
     <script>
         function checkEnterKey(event) {
@@ -73,23 +75,26 @@
             const driveLink = document.getElementById("driveLink").value;
 
             // Use regular expressions to extract the ID
-            const idMatch = driveLink.match(/\/d\/([A-Za-z0-9_-]+)/);
+            const idMatch = driveLink.match(/\/file\/d\/([A-Za-z0-9_-]+)/);
 
             if (idMatch && idMatch[1]) {
-                // Display the extracted ID as a clickable link
-                const downloadLinkElement = document.getElementById("downloadLink");
-                downloadLinkElement.textContent = `https://drive.google.com/uc?export=download&id=${idMatch[1]}`;
+                // Display the formatted link
+                const formattedLink = `https://drive.google.com/uc?id=${idMatch[1]}`;
+                const formattedLinkElement = document.getElementById("formattedLink");
+                formattedLinkElement.textContent = formattedLink;
+                formattedLinkElement.style.cursor = "pointer"; // Change cursor to pointer
             } else {
                 // Display an error message if the link format is invalid
-                const downloadLinkElement = document.getElementById("downloadLink");
-                downloadLinkElement.textContent = "Invalid Google Drive link";
+                const formattedLinkElement = document.getElementById("formattedLink");
+                formattedLinkElement.textContent = "Invalid Google Drive link";
+                formattedLinkElement.style.cursor = "default"; // Reset cursor style
             }
         }
 
         function copyToClipboard() {
-            // Get the download link text
-            const downloadLinkElement = document.getElementById("downloadLink");
-            const linkText = downloadLinkElement.textContent;
+            // Get the formatted link text
+            const formattedLinkElement = document.getElementById("formattedLink");
+            const linkText = formattedLinkElement.textContent;
 
             // Create a temporary input element
             const tempInput = document.createElement("input");
@@ -110,4 +115,5 @@
             alert("Link copied to clipboard: " + linkText);
         }
     </script>
+</body>
 </html>
