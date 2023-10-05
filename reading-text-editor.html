@@ -8,35 +8,34 @@
 
     <style>
         body {
-    font-family: Arial, sans-serif;
-}
+            font-family: Arial, sans-serif;
+        }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
 
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
-button {
-    background-color: #375265;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+        button {
+            background-color: #375265;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
 
-.output {
-    margin-top: 20px;
-    text-align: left;
-}
-
+        .output {
+            margin-top: 20px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -54,26 +53,25 @@ button {
     <script>
         const phrases = [];
 
-function addPhrase() {
-    const englishText = document.getElementById("englishText").value;
-    const translationText = document.getElementById("translationText").value;
+        function addPhrase() {
+            const englishText = document.getElementById("englishText").value;
+            const translationText = document.getElementById("translationText").value;
 
-    if (englishText && translationText) {
-        const words = englishText.split(" ").map((word, index) => ({
-            word,
-            translation: translationText.split(" ")[index] || ""
-        }));
+            if (englishText && translationText) {
+                const words = englishText.split(" ").map((word, index) => ({
+                    word,
+                    translation: translationText.split(" ")[index] || ""
+                }));
 
-        phrases.push({ text: englishText, words });
-        displayPhrases();
-    }
-}
+                phrases.push({ text: englishText, words });
+                displayPhrases();
+            }
+        }
 
-function displayPhrases() {
-    const outputContainer = document.getElementById("output");
-    outputContainer.innerHTML = "window.phrases = " + JSON.stringify(phrases, null, 4);
-}
-
+        function displayPhrases() {
+            const outputContainer = document.getElementById("output");
+            outputContainer.innerHTML = "window.phrases = " + JSON.stringify(phrases, null, 4);
+        }
     </script>
 </body>
 </html>
