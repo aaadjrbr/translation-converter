@@ -44,33 +44,38 @@
         <a href="./index.html"><p>Home</p></a>
         
         <textarea id="englishText" placeholder="Enter English text"></textarea>
-        <textarea id="translationText" placeholder="Enter Translation"></textarea>
-        <button onclick="addPhrase()">Add Phrase</button>
+        <textarea id="translationText" placeholder="Enter Portuguese translation"></textarea>
+        <button onclick="generateOutput()">Generate Output</button>
     </div>
     <div class="output">
         <pre id="output"></pre>
     </div>
     <script>
-        const phrases = [];
-
-        function addPhrase() {
+        function generateOutput() {
             const englishText = document.getElementById("englishText").value;
             const translationText = document.getElementById("translationText").value;
 
             if (englishText && translationText) {
                 const words = englishText.split(" ").map((word, index) => ({
-                    word,
+                    word: word,
                     translation: translationText.split(" ")[index] || ""
                 }));
 
-                phrases.push({ text: englishText, words });
-                displayPhrases();
-            }
-        }
+                const output = {
+                    text: englishText,
+                    words
+                };
 
-        function displayPhrases() {
-            const outputContainer = document.getElementById("output");
-            outputContainer.innerHTML = "window.phrases = " + JSON.stringify(phrases, null, 4);
+                const outputContainer = document.getElementById("output");
+                const outputText = `
+{
+    text: "${output.text}",
+    words: [
+        ${output.words.map(wordObj => `{ word: "${wordObj.word}", translation: "${wordObj.translation}" }`).join(',\n        ')}
+    ]
+}`;
+                outputContainer.innerText = outputText;
+            }
         }
     </script>
 </body>
