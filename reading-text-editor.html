@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For the reading section</title>
+    <link rel="icon" type="image/x-icon" href="./logo.png">
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #375265;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.output {
+    margin-top: 20px;
+    text-align: left;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Translation Tool</h1>
+        <a href="./index.html"><p>Home</p></a>
+        
+        <textarea id="englishText" placeholder="Enter English text"></textarea>
+        <textarea id="translationText" placeholder="Enter Translation"></textarea>
+        <button onclick="addPhrase()">Add Phrase</button>
+    </div>
+    <div class="output">
+        <pre id="output"></pre>
+    </div>
+    <script>
+        const phrases = [];
+
+function addPhrase() {
+    const englishText = document.getElementById("englishText").value;
+    const translationText = document.getElementById("translationText").value;
+
+    if (englishText && translationText) {
+        const words = englishText.split(" ").map((word, index) => ({
+            word,
+            translation: translationText.split(" ")[index] || ""
+        }));
+
+        phrases.push({ text: englishText, words });
+        displayPhrases();
+    }
+}
+
+function displayPhrases() {
+    const outputContainer = document.getElementById("output");
+    outputContainer.innerHTML = "window.phrases = " + JSON.stringify(phrases, null, 4);
+}
+
+    </script>
+</body>
+</html>
