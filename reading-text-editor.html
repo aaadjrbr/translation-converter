@@ -51,32 +51,36 @@
         <pre id="output"></pre>
     </div>
     <script>
-        function generateOutput() {
-            const englishText = document.getElementById("englishText").value;
-            const translationText = document.getElementById("translationText").value;
+function generateOutput() {
+    const englishText = document.getElementById("englishText").value;
+    const translationText = document.getElementById("translationText").value;
 
-            if (englishText && translationText) {
-                const words = englishText.split(" ").map((word, index) => ({
-                    word: word,
-                    translation: translationText.split(" ")[index] || ""
-                }));
+    if (englishText && translationText) {
+        const englishWords = englishText.split(" ");
+        const translationWords = translationText.split(" ");
 
-                const output = {
-                    text: englishText,
-                    words
-                };
+        const words = englishWords.map((word, index) => ({
+            word,
+            translation: translationWords[index] || ""
+        }));
 
-                const outputContainer = document.getElementById("output");
-                const outputText = `
-{
-    text: "${output.text}",
+        const output = {
+            text: englishText,
+            words
+        };
+
+        const outputContainer = document.getElementById("output");
+
+        const outputText = `{
+    text: "${output.text}", 
     words: [
-        ${output.words.map(wordObj => `{ word: "${wordObj.word}", translation: "${wordObj.translation}" }`).join(',\n        ')}
+        ${output.words.map(wordObj => `{ word: "${wordObj.word}", translation: "${wordObj.translation}"}`).join(',\n        ')}
     ]
-}`;
-                outputContainer.innerText = outputText;
-            }
-        }
+},`;
+
+        outputContainer.innerText = outputText;
+    }
+}
     </script>
 </body>
 </html>
