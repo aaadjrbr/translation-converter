@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Google Drive ID Extractor</title>
+        <link rel="icon" type="image/x-icon" href="./logo.png">
+    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #extractedId {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Drive ID Extractor (VIDEOS)</h1>
+    <a href="./index.html"><p>Home</p></a>
+
+
+    <p>Paste your Google Drive link below:</p>
+    <input type="text" id="driveLink" placeholder="Enter Google Drive Link" onkeydown="checkEnterKey(event)">
+    <button onclick="extractId()">Extract ID</button>
+    <p>Click the link below to copy it:</p>
+    <a id="downloadLink" href="#" onclick="copyToClipboard()"></a>
+
+    <script>
+        function checkEnterKey(event) {
+            // Check if the Enter key (key code 13) was pressed
+            if (event.keyCode === 13) {
+                event.preventDefault(); // Prevent the default form submission
+                extractId(); // Trigger the "Extract ID" action
+            }
+        }
+
+        function extractId() {
+            // Get the input value
+            const driveLink = document.getElementById("driveLink").value;
+
+            // Use regular expressions to extract the ID
+            const idMatch = driveLink.match(/\/d\/([A-Za-z0-9_-]+)/);
+
+            if (idMatch && idMatch[1]) {
+                // Display the extracted ID as a clickable link
+                const downloadLinkElement = document.getElementById("downloadLink");
+                downloadLinkElement.textContent = `https://drive.google.com/uc?export=download&id=${idMatch[1]}`;
+            } else {
+                // Display an error message if the link format is invalid
+                const downloadLinkElement = document.getElementById("downloadLink");
+                downloadLinkElement.textContent = "Invalid Google Drive link";
+            }
+        }
+
+        function copyToClipboard() {
+            // Get the download link text
+            const downloadLinkElement = document.getElementById("downloadLink");
+            const linkText = downloadLinkElement.textContent;
+
+            // Create a temporary input element
+            const tempInput = document.createElement("input");
+            tempInput.value = linkText;
+            document.body.appendChild(tempInput);
+
+            // Select the text in the input element
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text to the clipboard
+            document.execCommand("copy");
+
+            // Remove the temporary input element
+            document.body.removeChild(tempInput);
+
+            // Alert the user that the text has been copied
+            alert("Link copied to clipboard: " + linkText);
+        }
+    </script>
+</html>
