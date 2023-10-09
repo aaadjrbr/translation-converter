@@ -78,7 +78,7 @@
             if (idMatch && idMatch[1]) {
                 // Display the extracted ID as a clickable link
                 const downloadLinkElement = document.getElementById("downloadLink");
-                downloadLinkElement.textContent = `https://drive.google.com/uc?export=download&id=${idMatch[1]}`;
+                downloadLinkElement.textContent = `https://drive.google.com/file/d/${idMatch[1]}/preview`;
             } else {
                 // Display an error message if the link format is invalid
                 const downloadLinkElement = document.getElementById("downloadLink");
